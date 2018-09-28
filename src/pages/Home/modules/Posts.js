@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
+import Siema from './siema';
 
 const Arrow = ({display}) =>
   <svg style={!display? {opacity: 0}:{}} width="24" height="24" viewBox="0 0 24 24">
@@ -13,26 +14,43 @@ class ListItem extends Component {
   onMouseLeave = () => this.setState({hover: false })
   render() {
     const {item} = this.props
+    const {hover} = this.state
     return (
       <li onMouseLeave={this.onMouseLeave} onMouseOver={this.onMouseOver}>
         <h3>{item.title}</h3>
-        <p dangerouslySetInnerHTML={{ __html: item.description }}></p>
-        <Arrow display={this.state.hover}/>
+        <p dangerouslySetInnerHTML={{ __html: item.description }} />
+        <div className='technologies'>
+          {/* <h4 >Tech stack</h4> */}
+          { item.technologies.map(each => <span key={each}>{each}</span>) }
+        </div>
+        <div className='role' >
+          {/* <h4>Role</h4> */}
+          { item.role.map(each => <span key={each}>{each}</span>) }
+        </div>
+        {/* <Arrow display={hover}/> */}
         <a href={item.link} target="_blank"/>
       </li>
     )
   }
 }
 
-const Posts = ({posts}) =>
-<div className='Posts'>
-  <ul>
-    {
-      posts.map(item => <ListItem key={item.title} item={item}/>)
-    }
-  </ul>
-</div>
+class Posts extends Component {
+  componentDidMount() {
 
+  }
+  render() {
+    const {posts} = this.props
+    return (
+      <div className='Posts'>
+        <ul>
+          {
+            posts.map((item, i) => <ListItem key={item.title + i} item={item}/>)
+          }
+        </ul>
+      </div>
+    )
+  }
+}
 
 export default connect(state => ({
   posts: state.data.posts,

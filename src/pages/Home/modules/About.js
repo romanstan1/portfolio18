@@ -5,5 +5,5 @@ export default () =>
   I'm a <span>Front-end Web Developer</span>. <br/> I live in London. <br/>I love what I do.
   <br/>
   <br/>
-  Please peruse some of my projects listed below.
+  Here's a  few projects that I've been working on.
 </div>
