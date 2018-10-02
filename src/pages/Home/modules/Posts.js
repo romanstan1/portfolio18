@@ -17,18 +17,20 @@ class ListItem extends Component {
     const {hover} = this.state
     return (
       <li onMouseLeave={this.onMouseLeave} onMouseOver={this.onMouseOver}>
-        <h3>{item.title}</h3>
-        <p dangerouslySetInnerHTML={{ __html: item.description }} />
-        <div className='technologies'>
-          {/* <h4 >Tech stack</h4> */}
-          { item.technologies.map(each => <span key={each}>{each}</span>) }
-        </div>
-        <div className='role' >
-          {/* <h4>Role</h4> */}
-          { item.role.map(each => <span key={each}>{each}</span>) }
-        </div>
-        {/* <Arrow display={hover}/> */}
-        <a href={item.link} target="_blank"/>
+        <a href={item.link} target="_blank">
+          <h3>{item.title}</h3>
+          <span className='line'></span>
+          <p dangerouslySetInnerHTML={{ __html: item.description }} />
+          <div className='technologies'>
+            {/* <h4 >Tech stack</h4> */}
+            { item.technologies.map(each => <span key={each}>{each}</span>) }
+          </div>
+          <div className='role' >
+            {/* <h4>Role</h4> */}
+            { item.role.map(each => <span key={each}>{each}</span>) }
+          </div>
+          {/* <Arrow display={hover}/> */}
+        </a>
       </li>
     )
   }
